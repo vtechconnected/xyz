@@ -1,1141 +1,945 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vel Tech | Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #4f46e5;
-            --secondary: #10b981;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: var(--light);
-            scroll-behavior: smooth;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        section {
-            padding: 100px 0;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: var(--primary);
-            color: white;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            border: 2px solid var(--primary);
-        }
-
-        .btn:hover {
-            background: transparent;
-            color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 70px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-
-        /* Header Styles */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 20px 0;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo span {
-            color: var(--secondary);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            bottom: -5px;
-            left: 0;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .mobile-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            top: -150px;
-            right: -150px;
-            opacity: 0.2;
-            animation: pulse 8s infinite ease-in-out;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: linear-gradient(to right, var(--secondary), var(--primary));
-            bottom: -100px;
-            left: -100px;
-            opacity: 0.2;
-            animation: pulse 6s infinite ease-in-out;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 600px;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero-content h1 span {
-            color: var(--primary);
-            position: relative;
-        }
-
-        .hero-content h1 span::after {
-            content: '';
-            position: absolute;
-            height: 20px;
-            width: 100%;
-            background: rgba(79, 70, 229, 0.2);
-            bottom: 0;
-            left: 0;
-            z-index: -1;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 30px;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 15px;
-        }
-
-        .hero-img {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50%;
-            max-width: 600px;
-            animation: float 5s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(-50%) translateX(0);
-            }
-            50% {
-                transform: translateY(-53%) translateX(-10px);
-            }
-        }
-
-        /* About Section */
-        .about {
-            background: white;
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-
-        .about-img {
-            flex: 1;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            display: block;
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            color: var(--gray);
-        }
-
-        /* Services Section */
-        .services {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.03) 0%, rgba(16, 185, 129, 0.03) 100%);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-            padding: 40px 30px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(79, 70, 229, 0.15);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 0;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            top: 0;
-            left: 0;
-            transition: var(--transition);
-            z-index: -1;
-        }
-
-        .service-card:hover::before {
-            height: 100%;
-        }
-
-        .service-icon {
-            font-size: 3.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            transition: var(--transition);
-        }
-
-        .service-card:hover .service-icon {
-            color: white;
-        }
-
-        .service-card h3 {
-            margin-bottom: 15px;
-            transition: var(--transition);
-        }
-
-        .service-card:hover h3 {
-            color: white;
-        }
-
-        .service-card p {
-            color: var(--gray);
-            transition: var(--transition);
-        }
-
-        .service-card:hover p {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(79, 70, 229, 0.15);
-        }
-
-        .project-img {
-            height: 250px;
-            overflow: hidden;
-        }
-
-        .project-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .project-card:hover .project-img img {
-            transform: scale(1.1);
-        }
-
-        .project-content {
-            padding: 30px;
-        }
-
-        .project-content h3 {
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-
-        .project-content p {
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .project-tag {
-            background: rgba(79, 70, 229, 0.1);
-            color: var(--primary);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact::before {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            top: -100px;
-            right: -100px;
-        }
-
-        .contact::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            bottom: -150px;
-            left: -150px;
-        }
-
-        .contact .section-title h2 {
-            color: white;
-        }
-
-        .contact .section-title h2::after {
-            background: white;
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-
-        .contact-info p {
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .contact-details {
-            margin-top: 40px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .contact-item i {
-            font-size: 1.5rem;
-            margin-right: 15px;
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .contact-form .form-group {
-            margin-bottom: 20px;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            color: white;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .contact-form input::placeholder,
-        .contact-form textarea::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .contact-form textarea {
-            height: 150px;
-            resize: none;
-        }
-
-        .contact-form .btn {
-            background: white;
-            color: var(--primary);
-            border: none;
-        }
-
-        .contact-form .btn:hover {
-            background: rgba(255, 255, 255, 0.9);
-            color: var(--primary);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 70px 0 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .footer-col h4 {
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-col h4::after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 3px;
-            background: var(--primary);
-            bottom: 0;
-            left: 0;
-        }
-
-        .footer-col p {
-            margin-bottom: 20px;
-            opacity: 0.8;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.8;
-        }
-
-        /* Scroll to Top Button */
-        .scroll-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            z-index: 999;
-            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
-        }
-
-        .scroll-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-top:hover {
-            background: var(--secondary);
-            transform: translateY(-5px);
-        }
-
-        /* Animation Classes */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .animate-on-scroll.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero-content h1 {
-                font-size: 2.8rem;
-            }
-            
-            .hero-img {
-                display: none;
-            }
-            
-            .about-content {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .mobile-toggle {
-                display: block;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: white;
-                flex-direction: column;
-                align-items: center;
-                padding-top: 50px;
-                transition: var(--transition);
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .nav-links li {
-                margin: 15px 0;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.3rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-            
-            section {
-                padding: 70px 0;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vel Tech Connected — Portfolio</title>
+  <meta name="description" content="Vel Tech Connected — Expert Web Development, App Creation, and IT Consultancy." />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS (Animate on Scroll) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root{
+      --glass: rgba(255,255,255,.72);
+      --glassBorder: rgba(15,23,42,.08);
+      --shadowSoft: 0 18px 50px rgba(2, 6, 23, .10);
+      --shadowLift: 0 22px 70px rgba(2, 6, 23, .16);
+      --ring: rgba(59,130,246,.30);
+      --glow: rgba(59,130,246,.32);
+    }
+    html{ scroll-behavior: smooth; }
+    body{
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    /* Background: subtle corporate light mode gradient + grain */
+    .bg-tech{
+      background:
+        radial-gradient(1200px 700px at 10% 0%, rgba(37, 99, 235, .18), transparent 60%),
+        radial-gradient(900px 600px at 90% 10%, rgba(16, 185, 129, .16), transparent 55%),
+        radial-gradient(800px 600px at 60% 90%, rgba(99, 102, 241, .14), transparent 55%),
+        linear-gradient(180deg, #ffffff 0%, #f8fafc 40%, #ffffff 100%);
+    }
+    .grain::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events:none;
+      opacity: .08;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+      z-index: 0;
+    }
+    /* Glass navbar */
+    .glass{
+      background: var(--glass);
+      border: 1px solid var(--glassBorder);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(2,6,23,.06);
+    }
+    .glass.scrolled{
+      box-shadow: 0 18px 60px rgba(2,6,23,.10);
+    }
+    /* Card interactions */
+    .card{
+      background: rgba(255,255,255,.80);
+      border: 1px solid rgba(15,23,42,.08);
+      box-shadow: var(--shadowSoft);
+      transform: translateZ(0);
+    }
+    .card:hover{
+      box-shadow: var(--shadowLift);
+      border-color: rgba(59,130,246,.22);
+    }
+    .lift:hover{
+      transform: translateY(-6px) scale(1.01);
+    }
+    .glow:hover{
+      box-shadow:
+        0 0 0 4px rgba(59,130,246,.10),
+        0 24px 70px rgba(2,6,23,.14),
+        0 0 38px rgba(59,130,246,.22);
+    }
+    .btn{
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+    }
+    .btn:active{ transform: translateY(1px) scale(.99); }
+    .focus-ring:focus{
+      outline: none;
+      box-shadow: 0 0 0 4px var(--ring);
+      border-color: rgba(59,130,246,.45);
+    }
+    /* Modal */
+    .modal-backdrop{
+      background: rgba(2, 6, 23, .55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .modal-panel{
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(15,23,42,.10);
+      box-shadow: 0 30px 120px rgba(2,6,23,.30);
+    }
+    /* Fancy hero media */
+    .hero-frame{
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 30px 120px rgba(2,6,23,.12);
+      overflow: hidden;
+    }
+    .badge{
+      border: 1px solid rgba(59,130,246,.20);
+      background: rgba(59,130,246,.06);
+    }
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+      *{ animation: none !important; transition: none !important; }
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["ui-sans-serif","system-ui","-apple-system","Segoe UI","Roboto","Helvetica Neue","Arial","Noto Sans","Liberation Sans","sans-serif"],
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container header-inner">
-            <a href="#" class="logo">Vel<span>Tech</span></a>
-            
-            <div class="mobile-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-            
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Innovative Digital Solutions for Your <span>Business</span></h1>
-            <p>I create stunning web and mobile experiences that help businesses grow and succeed in the digital world. Let's build something amazing together!</p>
-            <div class="hero-btns">
-                <a href="#projects" class="btn">View My Work</a>
-                <a href="#contact" class="btn btn-outline">Contact Me</a>
-            </div>
-        </div>
-        <div class="hero-img">
-            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#4f46e5" opacity="0.1" d="M39.8,-59.9C51.4,-50.3,60,-37.8,67.1,-22.9C74.3,-8.1,80,9,78,24.8C76,40.6,66.3,55.2,53.2,65.1C40.1,75,23.6,80.2,6.1,82.3C-11.3,84.4,-22.7,83.4,-35.7,77.2C-48.7,71,-63.2,59.7,-71.5,44.9C-79.9,30.1,-82,11.8,-79.7,-5.8C-77.4,-23.3,-70.7,-40.2,-60.3,-52.7C-49.9,-65.2,-35.8,-73.3,-21.3,-73.8C-6.7,-74.3,8.2,-67.2,39.8,-59.9Z" transform="translate(250 250)" />
-                <circle cx="250" cy="250" r="180" fill="url(#gradient)" />
-                <defs>
-                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#4f46e5" />
-                        <stop offset="100%" stop-color="#10b981" />
-                    </linearGradient>
-                </defs>
-                <image href="https://images.unsplash.com/photo-1536104968055-4d61aa56f46a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&q=80" x="130" y="130" height="240" width="240" clip-path="circle(120 at 250 250)" />
-            </svg>
-        </div>
-    </section>
+<body class="bg-tech grain text-slate-900">
+  <!-- ===== Navbar Component ===== -->
+  <header class="fixed top-0 left-0 right-0 z-50">
+    <div id="navbar" class="glass mx-3 mt-3 rounded-2xl">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="flex h-16 items-center justify-between">
+          <a href="#home" class="flex items-center gap-2">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-500 text-white shadow-sm">
+              <i class="fa-solid fa-bolt"></i>
+            </span>
+            <span class="text-lg font-semibold tracking-tight">Vel Tech</span>
+            <span class="hidden sm:inline-flex badge rounded-full px-2.5 py-1 text-xs font-medium text-blue-700">Connected</span>
+          </a>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2>About Me</h2>
-                <p>Get to know me better</p>
-            </div>
-            
-            <div class="about-content">
-                <div class="about-img animate-on-scroll">
-                    <img src="https://images.unsplash.com/photo-1580894908361-967195033215?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="About Me">
-                </div>
-                
-                <div class="about-text animate-on-scroll">
-                    <h3>Hello, I'm Alex - a passionate web developer</h3>
-                    <p>With over 5 years of experience in creating digital solutions, I specialize in crafting high-performance websites and applications that drive business growth.</p>
-                    <p>My journey in tech began with a fascination for how technology can solve real-world problems. Since then, I've worked with diverse clients from startups to established businesses, helping them establish a strong online presence.</p>
-                    <p>I believe in clean, efficient code and user-centered design. Every project is an opportunity to create something meaningful and impactful.</p>
-                    <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or hiking in the mountains.</p>
-                    <a href="#contact" class="btn">Let's Connect</a>
-                </div>
-            </div>
-        </div>
-    </section>
+          <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-700">
+            <a class="hover:text-slate-900" href="#home">Home</a>
+            <a class="hover:text-slate-900" href="#about">About</a>
+            <a class="hover:text-slate-900" href="#services">Services</a>
+            <a class="hover:text-slate-900" href="#projects">Projects</a>
+            <a class="hover:text-slate-900" href="#contact">Contact</a>
+          </nav>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2>My Services</h2>
-                <p>What I can do for you</p>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Web Development</h3>
-                    <p>Custom websites built with modern technologies like HTML5, CSS3, JavaScript, and frameworks for optimal performance and user experience.</p>
-                </div>
-                
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-window-restore"></i>
-                    </div>
-                    <h3>Web App Development</h3>
-                    <p>Interactive web applications that provide seamless user experiences with advanced functionality and real-time features.</p>
-                </div>
-                
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Mobile App Development</h3>
-                    <p>Native and cross-platform mobile applications for iOS and Android that deliver exceptional performance and user engagement.</p>
-                </div>
-                
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Web Maintenance & Support</h3>
-                    <p>Ongoing support, updates, and maintenance to keep your website secure, fast, and up-to-date with the latest standards.</p>
-                </div>
-            </div>
+          <div class="flex items-center gap-2">
+            <a href="#contact" class="hidden sm:inline-flex btn rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 focus-ring">
+              Let’s Talk
+            </a>
+            <button id="menuBtn" class="md:hidden btn inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white/70 text-slate-800 shadow-sm hover:bg-white focus-ring" aria-label="Open menu">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2>My Projects</h2>
-                <p>Recent work I've completed</p>
-            </div>
-            
-            <div class="projects-grid">
-                <div class="project-card animate-on-scroll">
-                    <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Project">
-                    </div>
-                    <div class="project-content">
-                        <h3>E-commerce Platform</h3>
-                        <p>A full-featured online shopping platform with payment integration, inventory management, and customer analytics.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">React</span>
-                            <span class="project-tag">Node.js</span>
-                            <span class="project-tag">MongoDB</span>
-                        </div>
-                        <a href="#" class="btn">View Project</a>
-                    </div>
-                </div>
-                
-                <div class="project-card animate-on-scroll">
-                    <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Project">
-                    </div>
-                    <div class="project-content">
-                        <h3>Fitness Tracker App</h3>
-                        <p>A mobile application that helps users track workouts, set fitness goals, and monitor progress with data visualization.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Flutter</span>
-                            <span class="project-tag">Firebase</span>
-                            <span class="project-tag">Dart</span>
-                        </div>
-                        <a href="#" class="btn">View Project</a>
-                    </div>
-                </div>
-                
-                <div class="project-card animate-on-scroll">
-                    <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Project">
-                    </div>
-                    <div class="project-content">
-                        <h3>Corporate Website</h3>
-                        <p>A modern business website with CMS integration, portfolio showcase, and lead generation features.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">WordPress</span>
-                            <span class="project-tag">PHP</span>
-                            <span class="project-tag">JavaScript</span>
-                        </div>
-                        <a href="#" class="btn">View Project</a>
-                    </div>
-                </div>
-            </div>
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200/60 px-4 pb-4 pt-3">
+        <div class="flex flex-col gap-2 text-sm font-medium text-slate-700">
+          <a class="rounded-lg px-3 py-2 hover:bg-slate-100/70 hover:text-slate-900" href="#home">Home</a>
+          <a class="rounded-lg px-3 py-2 hover:bg-slate-100/70 hover:text-slate-900" href="#about">About</a>
+          <a class="rounded-lg px-3 py-2 hover:bg-slate-100/70 hover:text-slate-900" href="#services">Services</a>
+          <a class="rounded-lg px-3 py-2 hover:bg-slate-100/70 hover:text-slate-900" href="#projects">Projects</a>
+          <a class="rounded-lg px-3 py-2 hover:bg-slate-100/70 hover:text-slate-900" href="#contact">Contact</a>
+          <a class="mt-2 inline-flex btn justify-center rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 focus-ring" href="#contact">
+            Let’s Talk
+          </a>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2>Get In Touch</h2>
-                <p>I'd love to hear from you</p>
-            </div>
-            
-            <div class="contact-container">
-                <div class="contact-info animate-on-scroll">
-                    <h3>Let's Talk About Your Project</h3>
-                    <p>Have a project in mind? Want to learn more about my services? Feel free to reach out. I'm always open to discussing new projects and opportunities.</p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Email</h4>
-                                <p>hello@veltech.dev</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Phone</h4>
-                                <p>+1 (555) 123-4567</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h4>Location</h4>
-                                <p>San Francisco, CA</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form animate-on-scroll">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="text" placeholder="Subject" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <textarea placeholder="Your Message" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <a href="#" class="logo">Vel<span>Tech</span></a>
-                    <p>Creating innovative digital solutions that help businesses grow and succeed in the online world.</p>
-                    
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">Web App Development</a></li>
-                        <li><a href="#">Mobile App Development</a></li>
-                        <li><a href="#">Web Maintenance & Support</a></li>
-                        <li><a href="#">UI/UX Design</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Newsletter</h4>
-                    <p>Subscribe to get updates on my latest projects and articles.</p>
-                    <form>
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
-                        </div>
-                        <button type="submit" class="btn">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 Vel Tech. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scroll to Top Button -->
-    <div class="scroll-top">
-        <i class="fas fa-arrow-up"></i>
+      </div>
     </div>
+  </header>
 
-    <script>
-        // Mobile Navigation Toggle
-        const mobileToggle = document.querySelector('.mobile-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileToggle.querySelector('i').classList.toggle('fa-bars');
-            mobileToggle.querySelector('i').classList.toggle('fa-times');
-        });
-        
-        // Close mobile nav when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileToggle.querySelector('i').classList.add('fa-bars');
-                mobileToggle.querySelector('i').classList.remove('fa-times');
-            });
-        });
-        
-        // Scroll to Top Button
-        const scrollTopBtn = document.querySelector('.scroll-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollTopBtn.classList.add('active');
-            } else {
-                scrollTopBtn.classList.remove('active');
-            }
-        });
-        
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Sticky Header
-        const header = document.querySelector('header');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 100) {
-                header.style.padding = '10px 0';
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
-            } else {
-                header.style.padding = '20px 0';
-                header.style.boxShadow = 'none';
-            }
-        });
-        
-        // Animation on Scroll
-        const animateElements = document.querySelectorAll('.animate-on-scroll');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-        
-        animateElements.forEach(element => {
-            observer.observe(element);
-        });
-        
-        // Smooth Scrolling for Navigation Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const target = document.querySelector(this.getAttribute('href'));
-                
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+  <main id="home" class="relative z-10">
+    <!-- Spacer for fixed header -->
+    <div class="h-24"></div>
+
+    <!-- ===== Hero Component ===== -->
+    <section class="mx-auto max-w-7xl px-4 sm:px-6 pb-10 sm:pb-14">
+      <div class="grid items-center gap-10 lg:grid-cols-2">
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/60 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm"
+               data-aos="fade-up" data-aos-duration="700">
+            <span class="inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+            Available for new projects • Vel Tech Connected
+          </div>
+
+          <h1 class="mt-5 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl"
+              data-aos="fade-up" data-aos-delay="80" data-aos-duration="750">
+            Empowering Your Business with <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Digital Solutions.</span>
+          </h1>
+
+          <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg"
+             data-aos="fade-up" data-aos-delay="140" data-aos-duration="750">
+            Expert Web Development, App Creation, and IT Consultancy.
+          </p>
+
+          <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center"
+               data-aos="fade-up" data-aos-delay="220" data-aos-duration="750">
+            <a href="#projects" class="btn inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus-ring">
+              View My Work
+              <span class="ml-2 inline-flex items-center justify-center"><i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+            <a href="#services" class="btn inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white/70 px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm hover:bg-white focus-ring">
+              Explore Services
+            </a>
+          </div>
+
+          <div class="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3" data-aos="fade-up" data-aos-delay="280">
+            <div class="card rounded-2xl p-4">
+              <div class="text-xs font-semibold text-slate-500">Focus</div>
+              <div class="mt-1 text-sm font-semibold text-slate-900">Performance + SEO</div>
+            </div>
+            <div class="card rounded-2xl p-4">
+              <div class="text-xs font-semibold text-slate-500">Delivery</div>
+              <div class="mt-1 text-sm font-semibold text-slate-900">Modern UI/UX</div>
+            </div>
+            <div class="card rounded-2xl p-4 sm:col-span-1 col-span-2">
+              <div class="text-xs font-semibold text-slate-500">Support</div>
+              <div class="mt-1 text-sm font-semibold text-slate-900">Maintenance-ready</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative" data-aos="fade-left" data-aos-duration="900">
+          <div class="hero-frame rounded-3xl">
+            <!-- Video animation / motion background -->
+            <div class="relative aspect-[4/3] w-full">
+              <video
+                class="absolute inset-0 h-full w-full object-cover"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="auto"
+                poster="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1400&q=60"
+              >
+                <source src="https://cdn.coverr.co/videos/coverr-typing-on-a-keyboard-9225/1080p.mp4" type="video/mp4" />
+              </video>
+              <div class="absolute inset-0 bg-gradient-to-tr from-white/65 via-white/30 to-white/55"></div>
+
+              <!-- Floating info -->
+              <div class="absolute left-4 top-4 rounded-2xl bg-white/75 px-4 py-3 shadow-sm ring-1 ring-slate-200/70 backdrop-blur">
+                <div class="flex items-center gap-3">
+                  <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-sm">
+                    <i class="fa-solid fa-shield-halved"></i>
+                  </span>
+                  <div>
+                    <div class="text-sm font-semibold text-slate-900">Secure Builds</div>
+                    <div class="text-xs text-slate-600">Best practices by default</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="absolute bottom-4 left-4 right-4 grid gap-3 sm:grid-cols-2">
+                <div class="rounded-2xl bg-white/75 p-4 shadow-sm ring-1 ring-slate-200/70 backdrop-blur">
+                  <div class="flex items-center gap-3">
+                    <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-500 text-white shadow-sm">
+                      <i class="fa-solid fa-gauge-high"></i>
+                    </span>
+                    <div>
+                      <div class="text-sm font-semibold text-slate-900">Fast, responsive UI</div>
+                      <div class="text-xs text-slate-600">Mobile-first experiences</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="rounded-2xl bg-white/75 p-4 shadow-sm ring-1 ring-slate-200/70 backdrop-blur">
+                  <div class="flex items-center gap-3">
+                    <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-fuchsia-500 to-indigo-500 text-white shadow-sm">
+                      <i class="fa-solid fa-code"></i>
+                    </span>
+                    <div>
+                      <div class="text-sm font-semibold text-slate-900">Clean engineering</div>
+                      <div class="text-xs text-slate-600">Maintainable codebases</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Decorative -->
+          <div class="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-gradient-to-br from-blue-500/25 to-indigo-500/10 blur-2xl"></div>
+          <div class="pointer-events-none absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-gradient-to-br from-emerald-500/18 to-teal-500/10 blur-2xl"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About Component ===== -->
+    <section id="about" class="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16">
+      <div class="grid gap-8 lg:grid-cols-12 lg:items-start">
+        <div class="lg:col-span-5" data-aos="fade-up">
+          <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/60 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm">
+            <i class="fa-solid fa-user-tie text-blue-600"></i>
+            About Vel Tech Connected
+          </div>
+          <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+            Professional, reliable IT solutions built for growth.
+          </h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Vel Tech Connected is led by an IT business owner focused on delivering robust, high-quality digital solutions.
+            From polished marketing websites to functional web applications and long-term support, each build is designed to be fast, secure, and scalable.
+          </p>
+        </div>
+
+        <div class="lg:col-span-7" data-aos="fade-up" data-aos-delay="80">
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="card rounded-2xl p-5">
+              <div class="flex items-start gap-3">
+                <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm">
+                  <i class="fa-solid fa-diagram-project"></i>
+                </span>
+                <div>
+                  <div class="text-sm font-semibold text-slate-900">End-to-end delivery</div>
+                  <div class="mt-1 text-sm text-slate-600">Discovery → design → build → launch → support.</div>
+                </div>
+              </div>
+            </div>
+            <div class="card rounded-2xl p-5">
+              <div class="flex items-start gap-3">
+                <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm">
+                  <i class="fa-solid fa-screwdriver-wrench"></i>
+                </span>
+                <div>
+                  <div class="text-sm font-semibold text-slate-900">Production-ready quality</div>
+                  <div class="mt-1 text-sm text-slate-600">Clean architecture, performance, and maintainability.</div>
+                </div>
+              </div>
+            </div>
+            <div class="card rounded-2xl p-5 sm:col-span-2">
+              <div class="flex items-start gap-3">
+                <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-sm">
+                  <i class="fa-solid fa-handshake"></i>
+                </span>
+                <div>
+                  <div class="text-sm font-semibold text-slate-900">Client-first collaboration</div>
+                  <div class="mt-1 text-sm text-slate-600">
+                    Clear milestones, transparent updates, and solutions aligned with your business goals.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a href="#contact" class="btn inline-flex items-center justify-center rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 focus-ring">
+              Request a Quote
+            </a>
+            <a href="#projects" class="btn inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white/70 px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm hover:bg-white focus-ring">
+              See Projects
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Services Component ===== -->
+    <section id="services" class="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16">
+      <div class="flex items-end justify-between gap-6" data-aos="fade-up">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/60 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm">
+            <i class="fa-solid fa-layer-group text-blue-600"></i>
+            Services
+          </div>
+          <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">What Vel Tech can do for you</h2>
+          <p class="mt-3 max-w-2xl text-slate-600">High-impact services tailored for modern businesses—designed to convert, scale, and stay maintainable.</p>
+        </div>
+      </div>
+
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Service 1 -->
+        <article class="card lift glow rounded-2xl p-5 transition"
+                 data-aos="fade-up" data-aos-delay="0">
+          <div class="flex items-start justify-between gap-3">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm">
+              <i class="fa-solid fa-globe"></i>
+            </span>
+            <span class="text-xs font-semibold text-slate-500">01</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold text-slate-900">Web Development</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">Modern, responsive websites built for speed, SEO, and conversions.</p>
+          <button class="mt-4 inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-800 focus-ring rounded-lg px-2 py-1 -ml-2"
+                  data-modal-open="service-web">
+            Learn More <span class="ml-2"><i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+        </article>
+
+        <!-- Service 2 -->
+        <article class="card lift glow rounded-2xl p-5 transition"
+                 data-aos="fade-up" data-aos-delay="60">
+          <div class="flex items-start justify-between gap-3">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-sm">
+              <i class="fa-solid fa-cubes"></i>
+            </span>
+            <span class="text-xs font-semibold text-slate-500">02</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold text-slate-900">Web App Development</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">Custom web apps with clean UX, reliable logic, and scalable foundations.</p>
+          <button class="mt-4 inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-800 focus-ring rounded-lg px-2 py-1 -ml-2"
+                  data-modal-open="service-webapp">
+            Learn More <span class="ml-2"><i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+        </article>
+
+        <!-- Service 3 -->
+        <article class="card lift glow rounded-2xl p-5 transition"
+                 data-aos="fade-up" data-aos-delay="120">
+          <div class="flex items-start justify-between gap-3">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+            </span>
+            <span class="text-xs font-semibold text-slate-500">03</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold text-slate-900">Mobile App Development</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">Mobile experiences designed to engage users with intuitive flow and polish.</p>
+          <button class="mt-4 inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-800 focus-ring rounded-lg px-2 py-1 -ml-2"
+                  data-modal-open="service-mobile">
+            Learn More <span class="ml-2"><i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+        </article>
+
+        <!-- Service 4 -->
+        <article class="card lift glow rounded-2xl p-5 transition"
+                 data-aos="fade-up" data-aos-delay="180">
+          <div class="flex items-start justify-between gap-3">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-slate-900 text-white shadow-sm">
+              <i class="fa-solid fa-life-ring"></i>
+            </span>
+            <span class="text-xs font-semibold text-slate-500">04</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold text-slate-900">Web Maintenance &amp; Support</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">Updates, monitoring, fixes, and improvements—without the stress.</p>
+          <button class="mt-4 inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-800 focus-ring rounded-lg px-2 py-1 -ml-2"
+                  data-modal-open="service-support">
+            Learn More <span class="ml-2"><i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Projects Component ===== -->
+    <section id="projects" class="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16">
+      <div class="flex items-end justify-between gap-6" data-aos="fade-up">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/60 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm">
+            <i class="fa-solid fa-briefcase text-blue-600"></i>
+            Projects
+          </div>
+          <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">Selected work</h2>
+          <p class="mt-3 max-w-2xl text-slate-600">A snapshot of projects and consulting engagements—click to see details.</p>
+        </div>
+      </div>
+
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Project A -->
+        <button class="text-left card lift glow rounded-2xl overflow-hidden transition focus-ring"
+                data-modal-open="project-a"
+                data-aos="fade-up" data-aos-delay="0">
+          <div class="aspect-[16/11] w-full overflow-hidden bg-slate-100">
+            <img
+              class="h-full w-full object-cover"
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=60"
+              alt="Website Project A mockup"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-3">
+              <h3 class="text-base font-semibold text-slate-900">Website Project A</h3>
+              <i class="fa-solid fa-arrow-up-right-from-square text-slate-400"></i>
+            </div>
+            <p class="mt-2 text-sm text-slate-600">Corporate website development.</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-700 ring-1 ring-blue-100">HTML/CSS</span>
+              <span class="rounded-full bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">SEO</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Project B -->
+        <button class="text-left card lift glow rounded-2xl overflow-hidden transition focus-ring"
+                data-modal-open="project-b"
+                data-aos="fade-up" data-aos-delay="60">
+          <div class="aspect-[16/11] w-full overflow-hidden bg-slate-100">
+            <img
+              class="h-full w-full object-cover"
+              src="https://images.unsplash.com/photo-1557825835-70d97c4aa567?auto=format&fit=crop&w=1400&q=60"
+              alt="Website Project B mockup"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-3">
+              <h3 class="text-base font-semibold text-slate-900">Website Project B</h3>
+              <i class="fa-solid fa-arrow-up-right-from-square text-slate-400"></i>
+            </div>
+            <p class="mt-2 text-sm text-slate-600">E-commerce or Portfolio site.</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-semibold text-indigo-700 ring-1 ring-indigo-100">UI/UX</span>
+              <span class="rounded-full bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">Conversion</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Web Application -->
+        <button class="text-left card lift glow rounded-2xl overflow-hidden transition focus-ring"
+                data-modal-open="project-webapp"
+                data-aos="fade-up" data-aos-delay="120">
+          <div class="aspect-[16/11] w-full overflow-hidden bg-slate-100">
+            <img
+              class="h-full w-full object-cover"
+              src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1400&q=60"
+              alt="Web Application mockup"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-3">
+              <h3 class="text-base font-semibold text-slate-900">Web Application</h3>
+              <i class="fa-solid fa-arrow-up-right-from-square text-slate-400"></i>
+            </div>
+            <p class="mt-2 text-sm text-slate-600">Custom functional web app.</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-100">React</span>
+              <span class="rounded-full bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">APIs</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- IT Consultancy -->
+        <button class="text-left card lift glow rounded-2xl overflow-hidden transition focus-ring"
+                data-modal-open="project-consult"
+                data-aos="fade-up" data-aos-delay="180">
+          <div class="aspect-[16/11] w-full overflow-hidden bg-slate-100">
+            <img
+              class="h-full w-full object-cover"
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=60"
+              alt="IT Consultancy mockup"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-5">
+            <div class="flex items-start justify-between gap-3">
+              <h3 class="text-base font-semibold text-slate-900">IT Consultancy</h3>
+              <i class="fa-solid fa-arrow-up-right-from-square text-slate-400"></i>
+            </div>
+            <p class="mt-2 text-sm text-slate-600">Strategic IT infrastructure planning for a company.</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-700 ring-1 ring-blue-100">Consulting</span>
+              <span class="rounded-full bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">Strategy</span>
+            </div>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== Contact Component ===== -->
+    <section id="contact" class="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16">
+      <div class="grid gap-8 lg:grid-cols-12 lg:items-start">
+        <div class="lg:col-span-5" data-aos="fade-up">
+          <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/60 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm">
+            <i class="fa-solid fa-envelope text-blue-600"></i>
+            Contact
+          </div>
+          <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">Let’s build something great</h2>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Share your goals and timeline. You’ll get a clear response with next steps and recommendations.
+          </p>
+
+          <div class="mt-6 space-y-3">
+            <div class="flex items-center gap-3 rounded-2xl bg-white/70 p-4 ring-1 ring-slate-200/70 shadow-sm">
+              <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm">
+                <i class="fa-solid fa-at"></i>
+              </span>
+              <div>
+                <div class="text-xs font-semibold text-slate-500">Email</div>
+                <a class="text-sm font-semibold text-slate-900 hover:underline" href="mailto:veltechconnected@example.com">veltechconnected@example.com</a>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 rounded-2xl bg-white/70 p-4 ring-1 ring-slate-200/70 shadow-sm">
+              <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm">
+                <i class="fa-solid fa-phone"></i>
+              </span>
+              <div>
+                <div class="text-xs font-semibold text-slate-500">Phone</div>
+                <a class="text-sm font-semibold text-slate-900 hover:underline" href="tel:+10000000000">+1 (000) 000-0000</a>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <a class="btn inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white/70 px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-white focus-ring" href="#" aria-label="LinkedIn">
+                <i class="fa-brands fa-linkedin text-blue-700"></i> LinkedIn
+              </a>
+              <a class="btn inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white/70 px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-white focus-ring" href="#" aria-label="GitHub">
+                <i class="fa-brands fa-github"></i> GitHub
+              </a>
+              <a class="btn inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white/70 px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-white focus-ring" href="#" aria-label="X / Twitter">
+                <i class="fa-brands fa-x-twitter"></i> X
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7" data-aos="fade-up" data-aos-delay="80">
+          <form id="contactForm" class="card rounded-3xl p-6 sm:p-7">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label class="text-sm font-semibold text-slate-800" for="name">Name</label>
+                <input id="name" name="name" required
+                       class="mt-2 w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-sm text-slate-900 shadow-sm focus-ring"
+                       placeholder="Your name" />
+              </div>
+              <div>
+                <label class="text-sm font-semibold text-slate-800" for="email">Email</label>
+                <input id="email" name="email" type="email" required
+                       class="mt-2 w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-sm text-slate-900 shadow-sm focus-ring"
+                       placeholder="you@company.com" />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label class="text-sm font-semibold text-slate-800" for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required
+                        class="mt-2 w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-3 text-sm text-slate-900 shadow-sm focus-ring"
+                        placeholder="Tell me about your project..."></textarea>
+            </div>
+
+            <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <p class="text-xs text-slate-500">By sending this form, you agree to be contacted by Vel Tech Connected.</p>
+              <button type="submit" class="btn inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus-ring">
+                Send Message
+                <span class="ml-2"><i class="fa-solid fa-paper-plane"></i></span>
+              </button>
+            </div>
+
+            <div id="formToast" class="mt-4 hidden rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+              Message prepared. (Demo) Hook this form to your email service or backend endpoint.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Footer Component ===== -->
+    <footer class="mx-auto max-w-7xl px-4 sm:px-6 pb-10">
+      <div class="card rounded-3xl p-6 sm:p-8">
+        <div class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-500 text-white shadow-sm">
+                <i class="fa-solid fa-bolt"></i>
+              </span>
+              <div>
+                <div class="text-base font-semibold">Vel Tech</div>
+                <div class="text-sm text-slate-600">Vel Tech Connected</div>
+              </div>
+            </div>
+            <p class="mt-4 max-w-md text-sm text-slate-600">
+              Modern digital solutions for businesses that want clarity, speed, and strong execution.
+            </p>
+          </div>
+
+          <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+            <div>
+              <div class="text-sm font-semibold text-slate-900">Quick Links</div>
+              <div class="mt-3 flex flex-col gap-2 text-sm">
+                <a class="text-slate-600 hover:text-slate-900" href="#home">Home</a>
+                <a class="text-slate-600 hover:text-slate-900" href="#about">About</a>
+                <a class="text-slate-600 hover:text-slate-900" href="#services">Services</a>
+                <a class="text-slate-600 hover:text-slate-900" href="#projects">Projects</a>
+                <a class="text-slate-600 hover:text-slate-900" href="#contact">Contact</a>
+              </div>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-slate-900">Services</div>
+              <div class="mt-3 flex flex-col gap-2 text-sm">
+                <button class="text-left text-slate-600 hover:text-slate-900" data-modal-open="service-web">Web Development</button>
+                <button class="text-left text-slate-600 hover:text-slate-900" data-modal-open="service-webapp">Web App Development</button>
+                <button class="text-left text-slate-600 hover:text-slate-900" data-modal-open="service-mobile">Mobile App Development</button>
+                <button class="text-left text-slate-600 hover:text-slate-900" data-modal-open="service-support">Maintenance & Support</button>
+              </div>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-slate-900">Get in touch</div>
+              <div class="mt-3 flex flex-col gap-2 text-sm text-slate-600">
+                <a class="hover:text-slate-900" href="mailto:veltechconnected@example.com">veltechconnected@example.com</a>
+                <a class="hover:text-slate-900" href="tel:+10000000000">+1 (000) 000-0000</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 border-t border-slate-200/70 pt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div class="text-sm text-slate-600">© 2026 Vel Tech Connected</div>
+          <div class="flex items-center gap-4 text-sm text-slate-600">
+            <a class="hover:text-slate-900" href="#contact">Privacy</a>
+            <a class="hover:text-slate-900" href="#contact">Terms</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ===== Modal System (Shared) ===== -->
+  <div id="modalRoot" class="fixed inset-0 z-[60] hidden">
+    <div class="absolute inset-0 modal-backdrop" data-modal-close></div>
+    <div class="relative mx-auto flex h-full max-w-3xl items-center justify-center px-4 sm:px-6">
+      <div class="modal-panel w-full rounded-3xl p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div id="modalKicker" class="text-xs font-semibold uppercase tracking-wide text-slate-500">Details</div>
+            <h3 id="modalTitle" class="mt-1 text-xl sm:text-2xl font-semibold text-slate-900">Title</h3>
+          </div>
+          <button class="btn inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white/70 text-slate-800 shadow-sm hover:bg-white focus-ring" aria-label="Close modal" data-modal-close>
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div id="modalBody" class="mt-4 text-sm leading-relaxed text-slate-700"></div>
+
+        <div id="modalMeta" class="mt-5 grid gap-3 sm:grid-cols-2"></div>
+
+        <div class="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-end">
+          <button class="btn inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white/70 px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm hover:bg-white focus-ring" data-modal-close>
+            Close
+          </button>
+          <a href="#contact" class="btn inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus-ring" data-modal-close>
+            Start a Project
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Using: Pure HTML/CSS/JavaScript + Tailwind + AOS (per requirements).
+    // Scroll reveal: AOS initialization (elements fade in as they enter viewport).
+    AOS.init({
+      once: true,
+      offset: 80,
+      duration: 750,
+      easing: "ease-out-cubic"
+    });
+
+    // Sticky glass effect on scroll
+    const navbar = document.getElementById('navbar');
+    const onScroll = () => {
+      if (window.scrollY > 10) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMobileMenu = () => mobileMenu.classList.add('hidden');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
+
+    // Modal content data
+    const modalData = {
+      // Services
+      "service-web": {
+        kicker: "Service",
+        title: "Web Development",
+        body: `
+          <p><strong>Overview:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+        `,
+        meta: [
+          { label: "Best for", value: "Corporate sites, landing pages, portfolios" },
+          { label: "Focus", value: "SEO, speed, accessibility, conversions" }
+        ]
+      },
+      "service-webapp": {
+        kicker: "Service",
+        title: "Web App Development",
+        body: `
+          <p><strong>Overview:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+          <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
+        `,
+        meta: [
+          { label: "Best for", value: "Dashboards, portals, internal tools" },
+          { label: "Focus", value: "Scalable architecture, clean UX, APIs" }
+        ]
+      },
+      "service-mobile": {
+        kicker: "Service",
+        title: "Mobile App Development",
+        body: `
+          <p><strong>Overview:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.</p>
+        `,
+        meta: [
+          { label: "Best for", value: "Customer apps, booking, productivity" },
+          { label: "Focus", value: "Polish, usability, performance" }
+        ]
+      },
+      "service-support": {
+        kicker: "Service",
+        title: "Web Maintenance & Support",
+        body: `
+          <p><strong>Overview:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+          <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis tortor nec placerat.</p>
+        `,
+        meta: [
+          { label: "Includes", value: "Updates, fixes, monitoring, improvements" },
+          { label: "Outcome", value: "Stable site with reduced downtime risk" }
+        ]
+      },
+
+      // Projects
+      "project-a": {
+        kicker: "Project",
+        title: "Website Project A",
+        body: `
+          <p><strong>Description:</strong> Corporate website development.</p>
+          <p class="mt-3"><strong>Problem solved:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p class="mt-3"><strong>Approach:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis ipsum. Praesent mauris.</p>
+        `,
+        meta: [
+          { label: "Tech used", value: "HTML, CSS, JavaScript" },
+          { label: "Highlights", value: "Responsive layout, SEO structure, fast load" }
+        ]
+      },
+      "project-b": {
+        kicker: "Project",
+        title: "Website Project B",
+        body: `
+          <p><strong>Description:</strong> E-commerce or Portfolio site.</p>
+          <p class="mt-3"><strong>Problem solved:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.</p>
+          <p class="mt-3"><strong>Approach:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
+        `,
+        meta: [
+          { label: "Tech used", value: "UI/UX design system, modern frontend" },
+          { label: "Highlights", value: "Conversion-focused sections, clean visuals" }
+        ]
+      },
+      "project-webapp": {
+        kicker: "Project",
+        title: "Web Application",
+        body: `
+          <p><strong>Description:</strong> Custom functional web app.</p>
+          <p class="mt-3"><strong>Problem solved:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+          <p class="mt-3"><strong>Approach:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sodales ligula in libero.</p>
+        `,
+        meta: [
+          { label: "Tech used", value: "React, REST APIs" },
+          { label: "Highlights", value: "Reusable components, scalable patterns" }
+        ]
+      },
+      "project-consult": {
+        kicker: "Project",
+        title: "IT Consultancy",
+        body: `
+          <p><strong>Description:</strong> Strategic IT infrastructure planning for a company.</p>
+          <p class="mt-3"><strong>Problem solved:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.</p>
+          <p class="mt-3"><strong>Approach:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec tellus sed augue semper porta.</p>
+        `,
+        meta: [
+          { label: "Tech used", value: "Infrastructure planning, security best practices" },
+          { label: "Highlights", value: "Roadmap, risk reduction, scalable foundation" }
+        ]
+      }
+    };
+
+    const modalRoot = document.getElementById('modalRoot');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    const modalKicker = document.getElementById('modalKicker');
+    const modalMeta = document.getElementById('modalMeta');
+
+    let lastFocused = null;
+
+    function openModal(key){
+      const data = modalData[key];
+      if (!data) return;
+
+      lastFocused = document.activeElement;
+
+      modalKicker.textContent = data.kicker || "Details";
+      modalTitle.textContent = data.title || "Details";
+      modalBody.innerHTML = data.body || "";
+
+      modalMeta.innerHTML = "";
+      (data.meta || []).forEach(item => {
+        const el = document.createElement('div');
+        el.className = "rounded-2xl bg-white/70 p-4 ring-1 ring-slate-200/70 shadow-sm";
+        el.innerHTML = `
+          <div class="text-xs font-semibold text-slate-500">${item.label}</div>
+          <div class="mt-1 text-sm font-semibold text-slate-900">${item.value}</div>
+        `;
+        modalMeta.appendChild(el);
+      });
+
+      modalRoot.classList.remove('hidden');
+      document.body.style.overflow = "hidden";
+
+      const closeBtn = modalRoot.querySelector('[data-modal-close].btn') || modalRoot.querySelector('[data-modal-close]');
+      (closeBtn || modalRoot).focus?.();
+    }
+
+    function closeModal(){
+      modalRoot.classList.add('hidden');
+      document.body.style.overflow = "";
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    document.querySelectorAll('[data-modal-open]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        const key = e.currentTarget.getAttribute('data-modal-open');
+        openModal(key);
+      });
+    });
+
+    modalRoot.querySelectorAll('[data-modal-close]').forEach(el => el.addEventListener('click', closeModal));
+    window.addEventListener('keydown', (e) => {
+      if (e.key === "Escape" && !modalRoot.classList.contains('hidden')) closeModal();
+    });
+
+    // Contact form (demo)
+    const contactForm = document.getElementById('contactForm');
+    const formToast = document.getElementById('formToast');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      formToast.classList.remove('hidden');
+      contactForm.reset();
+      setTimeout(() => formToast.classList.add('hidden'), 4500);
+    });
+  </script>
 </body>
 </html>
